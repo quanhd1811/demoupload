@@ -12,10 +12,10 @@ import java.io.FileInputStream;
 public class FirebaseInitialization {
     @PostConstruct
     public void initialization() {
-        FileInputStream serviceAccount =
-                null;
+        ClassLoader classLoader = getClass().getClassLoader();
+        FileInputStream serviceAccount = null;
         try {
-            serviceAccount = new FileInputStream("/home/gameonly2101/src/main/resources/serviceAccountKey.json");
+            serviceAccount = new FileInputStream(classLoader.getResource("serviceAccountKey.json").getFile());
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .build();
