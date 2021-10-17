@@ -12,10 +12,11 @@ import java.io.FileInputStream;
 public class FirebaseInitialization {
     @PostConstruct
     public void initialization() {
-        ClassLoader classLoader = getClass().getClassLoader();
+//        ClassLoader classLoader = getClass().getClassLoader();
         FileInputStream serviceAccount = null;
         try {
-            serviceAccount = new FileInputStream(classLoader.getResource("serviceAccountKey.json").getFile());
+            //classLoader.getResouces("serviceAccountKey.json).getFile
+            serviceAccount = new FileInputStream("./serviceAccountKey.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .build();
