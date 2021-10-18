@@ -40,9 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**","/api/account/token/refresh/**","/api/service/**","/api/account/**").permitAll(); // What part doesn't secure
-        http.authorizeRequests().antMatchers(GET,"/api/account/detail/**").hasAnyAuthority("Customer");
-        http.authorizeRequests().antMatchers(GET,"/api/account/**").hasAnyAuthority("Admin");
-        http.authorizeRequests().antMatchers(POST,"/api/account/changeRole").hasAnyAuthority("Admin");
+        http.authorizeRequests().antMatchers(GET,"/api/account/detail/**").hasAnyAuthority("customer");
+        //http.authorizeRequests().antMatchers(GET,"/api/account/**").hasAnyAuthority("admin");
+        http.authorizeRequests().antMatchers(POST,"/api/account/changeRole").hasAnyAuthority("admin");
         http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
